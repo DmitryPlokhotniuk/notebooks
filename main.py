@@ -55,6 +55,8 @@ def main():
 
         if choice == '1':
             print('Заметки: \n')
+            notes = sorted(notes,
+                           key=lambda x: datetime.strptime(x['datetime'], '%Y-%m-%d %H:%M:%S'), reverse=False)
             for note in notes:
                 print(f"ID: {note['id']}")
                 print(f"Заголовок: {note['title']}")
@@ -80,7 +82,7 @@ def main():
             note_id = int(input('Введите ID заметки для редактирования: '))
             new_title = input('Введите новый заголовок заметки (или оставьте пустым): ')
             new_body = input('Ведите новый текст заметки (или оставьте пустым): ')
-            #new_datatime = input('Введите новую дату/время заметки (или оставьте пустым): ')
+            # new_datatime = input('Введите новую дату/время заметки (или оставьте пустым): ')
             new_date_time: str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
             edit_note(notes, note_id, new_title, new_body, new_date_time)
